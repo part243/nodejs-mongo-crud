@@ -9,13 +9,13 @@ if (!req.body.apellidos) {
     res.status(400).send({ message: "complete los campos" });
     return;
   }
-  // Create a Tutorial
+  // Create a datopersonal
   const datPersonal = new DatosPersonalesModel({
     nombres: req.body.nombres,
     apellidos: req.body.apellidos,
     trabaja: req.body.trabaja ? req.body.trabaja : false
   });
-  // Save Tutorial in the database
+  // Save satopersonal in the database
   datPersonal
     .save(datPersonal)
     .then(data => {
@@ -34,6 +34,7 @@ exports.findAll = (req, res) =>{
     var condition = apellidos ? { apellidos: { $regex: new RegExp(apellidos), $options: "i" } } : {};
     DatosPersonalesModel.find(condition)
       .then(data => {
+         // res.render("../views/index.ejs",{data});
         res.send(data);
       })
       .catch(err => {
